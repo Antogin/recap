@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/node_modules/reveal.js/dist/reveal.css" />
+    <link
+      rel="stylesheet"
+      href="/node_modules/reveal.js/dist/theme/black.css"
+    />
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-auto-animate class="login">
+          <h2>💽</h2>
+        </section>
+        <section
+          data-background-color="#1DB954"
+          data-auto-animate
+          class="welcome"
+        >
+          Your top artists
+          <h2>💽</h2>
+        </section>
+        <section data-background-color="#1DB954" data-auto-animate>
+          Your top artists
+          <h2>💽</h2>
+        </section>
+        <section>
+          <section class="artist-0">Vertical Slide 1</section>
+          <section class="artist-1">Vertical Slide 2</section>
+          <section class="artist-2">Vertical Slide 3</section>
+        </section>
+        <section data-background-color="#1DB954" data-auto-animate>
+          Your top Tracks
+          <h2>💽</h2>
+        </section>
+        <section class="tracks"></section>
+
+        <section
+          data-auto-animate="running"
+          data-auto-animate-easing="cubic-bezier(0.770, 0.000, 0.175, 1.000)"
+          style="top: 214px; display: block;"
+        >
+          <h2 data-auto-animate-target="42">Your chart</h2>
+          <div class="r-hstack justify-center boxes">
+            <div
+              data-id="box1"
+              style="
+                background: #999;
+                width: 50px;
+                height: 50px;
+                margin: 10px;
+                border-radius: 5px;
+              "
+              data-auto-animate-target="39"
+            ></div>
+            <div
+              data-id="box2"
+              style="
+                background: #999;
+                width: 50px;
+                height: 50px;
+                margin: 10px;
+                border-radius: 5px;
+              "
+              data-auto-animate-target="40"
+            ></div>
+            <div
+              data-id="box3"
+              style="
+                background: #999;
+                width: 50px;
+                height: 50px;
+                margin: 10px;
+                border-radius: 5px;
+              "
+              data-auto-animate-target="41"
+            ></div>
+          </div>
+        </section>
+
+        <section
+          data-auto-animate="pending"
+          data-auto-animate-easing="cubic-bezier(0.770, 0.000, 0.175, 1.000)"
+          style="top: 235.5px; display: block; color: black;"
+        >
+          <div class="r-hstack justify-center boxes">
+            <div
+              data-id="box1"
+              data-auto-animate-delay="0"
+              style="
+                background: cyan;
+                width: 250px;
+                height: 100px;
+                margin: 10px;
+              "
+              data-auto-animate-target=""
+            >
+              Energy
+            </div>
+            <div
+              data-id="box2"
+              data-auto-animate-delay="0.1"
+              style="
+                background: magenta;
+                width: 250px;
+                height: 100px;
+                margin: 10px;
+              "
+              data-auto-animate-target=""
+            >
+              Danceability
+            </div>
+            <div
+              data-id="box3"
+              data-auto-animate-delay="0.2"
+              style="
+                background: yellow;
+                width: 250px;
+                height: 100px;
+                margin: 10px;
+              "
+              data-auto-animate-target=""
+            >
+              Happiness
+            </div>
+          </div>
+          <h2 style="margin-top: 20px;" data-auto-animate-target="">
+            Your chart
+          </h2>
+        </section>
+
+        <section
+          data-auto-animate="pending"
+          data-auto-animate-easing="cubic-bezier(0.770, 0.000, 0.175, 1.000)"
+          style="top: 235.5px; display: block; color: black;"
+        >
+          <div class="r-hstack justify-center boxes boxes-append">
+            <!-- <div data-id="box1" data-auto-animate-delay="0"
+								style="background: cyan; width: 250px; height: 120px; margin: 10px" data-auto-animate-target="">
+							</div>
+							<div data-id="box2" data-auto-animate-delay="0.1"
+								style="background: magenta; width: 250px; height: 10px; margin: 10px;"
+								data-auto-animate-target=""></div>
+							<div data-id="box3" data-auto-animate-delay="0.2"
+								style="background: yellow; width: 250px; height: 300px; margin: 10px;"
+								data-auto-animate-target=""></div> -->
+          </div>
+          <h2 style="margin-top: 20px;" data-auto-animate-target="">
+            Your chart
+          </h2>
+        </section>
+
+        <section class="charts" data-auto-animate>
+          Your charts
+          <h2>💽</h2>
+
+          <span id="a">a</span>
+          <span id="b">b</span>
+          <span id="c">c</span>
+        </section>
+        <section class="chart=1" data-auto-animate>
+          Your charts
+          <div id="a">a</div>
+          <div id="b">b</div>
+          <div id="c">c</div>
+        </section>
+        <section class="chart=2" data-auto-animate>
+          Your charts
+          <h2>💽</h2>
+        </section>
+      </div>
+    </div>
+
+    <script src="src/index.js"></script>
+  </body>
+</html>
