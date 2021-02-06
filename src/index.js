@@ -198,7 +198,7 @@ const getAllInfo = async () => {
 
     console.log(process)
     const button = `
-      <a href="recap.antogin.dev/api/auth/login">login</a>
+      <a href="/api/auth/login">login</a>
     `;
 
     login.innerHTML += button;
