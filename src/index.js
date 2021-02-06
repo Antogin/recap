@@ -196,8 +196,9 @@ const getAllInfo = async () => {
 
     const login = document.querySelector(".login");
 
+    console.log(process)
     const button = `
-      <a href="http://localhost:8888/login">login</a>
+      <a href="recap.antogin.dev/api/auth/login">login</a>
     `;
 
     login.innerHTML += button;
