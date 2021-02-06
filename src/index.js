@@ -1,4 +1,6 @@
 import "./styles.css";
+import 'regenerator-runtime/runtime'
+
 import Reveal from "reveal.js";
 
 Reveal.initialize({
