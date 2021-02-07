@@ -9,6 +9,16 @@ Reveal.initialize({
   controlsLayout: "edges"
 });
 
+const urlWithQueryParams = (base, params) => {
+  const url = new URL(base);
+
+  Object.keys(params).forEach((key) =>
+    url.searchParams.append(key, params[key])
+  );
+
+  return url
+}
+
 const artistComponent = (name, url, genresList, i) => {
   const artistTemplate = `
   <div>
@@ -57,13 +67,13 @@ const getAllInfo = async () => {
       headers
     }).then((data) => data.json());
 
-    console.log(user);
-
     const welcome = document.querySelector(`.welcome`);
 
     welcome.innerHTML = welcomeComponent(user.display_name);
 
-    const artistsResponse = await fetch(`${baseStotifyUrl}/v1/me/top/artists`, {
+    const artistsUrl = urlWithQueryParams(`${baseStotifyUrl}/v1/me/top/artists`, { time_range: 'short_term' })
+
+    const artistsResponse = await fetch(artistsUrl, {
       headers
     }).then((data) => data.json());
 
@@ -85,13 +95,14 @@ const getAllInfo = async () => {
       el.innerHTML = tpl;
     });
 
-    const tracksResponse = await fetch(`${baseStotifyUrl}/v1/me/top/tracks`, {
+
+    const tracksUrl = urlWithQueryParams(`${baseStotifyUrl}/v1/me/top/tracks`, { time_range: 'short_term' })
+
+    const tracksResponse = await fetch(tracksUrl, {
       headers
     }).then((data) => data.json());
 
     const { items: tracks } = tracksResponse;
-
-    console.log(tracks);
 
     tracks.forEach((track, i) => {
       const url = track.album.images[0].url;
@@ -105,18 +116,12 @@ const getAllInfo = async () => {
 
     const ids = tracks.map(({ id }) => id);
 
-    const featUrl = new URL(`${baseStotifyUrl}/v1/audio-features`);
 
-    const params = { ids: ids.join(",") };
-    Object.keys(params).forEach((key) =>
-      featUrl.searchParams.append(key, params[key])
-    );
+    const featUrl = urlWithQueryParams(`${baseStotifyUrl}/v1/audio-features`,  { ids: ids.join(",") })
 
     const { audio_features } = await fetch(featUrl, {
       headers
     }).then((data) => data.json());
-
-    console.log(audio_features);
 
     const total = audio_features.reduce(
       (prev, { danceability, energy, valence }) => {
@@ -130,9 +135,6 @@ const getAllInfo = async () => {
       { danceability: 0, energy: 0, valence: 0 }
     );
 
-    console.log("//////");
-    console.log(total);
-
     const avg = {
       danceability: total.danceability / 20,
       energy: total.energy / 20,
@@ -144,43 +146,31 @@ const getAllInfo = async () => {
     const danceDiv = `
     <div data-id="box1" data-auto-animate-delay="0"
         style="background: cyan; width: 250px; height: ${calcH(
-          avg.danceability
-        )}px; margin: 10px" data-auto-animate-target="">
+      avg.danceability
+    )}px; margin: 10px" data-auto-animate-target="">
       </div>
     `;
 
     const energyDiv = `
     <div data-id="box2" data-auto-animate-delay="0"
         style="background: magenta; width: 250px; height: ${calcH(
-          avg.energy
-        )}px; margin: 10px" data-auto-animate-target="">
+      avg.energy
+    )}px; margin: 10px" data-auto-animate-target="">
       </div>
     `;
     const valenceDiv = `
     <div data-id="box3" data-auto-animate-delay="0"
         style="background: yellow; width: 250px; height: ${calcH(
-          avg.valence
-        )}px; margin: 10px" data-auto-animate-target="">
+      avg.valence
+    )}px; margin: 10px" data-auto-animate-target="">
       </div>
     `;
-
-    console.log(avg);
 
     let boxesEl = document.querySelector(`.boxes-append`);
 
     boxesEl.innerHTML += danceDiv;
     boxesEl.innerHTML += energyDiv;
     boxesEl.innerHTML += valenceDiv;
-
-    console.log(boxesEl);
-
-    // Reveal.initialize({
-    // 	hash: true,
-    // 	controlsTutorial: true,
-    // 	controlsLayout: 'edges',
-
-    // 	plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
-    // });
 
     Reveal.sync();
 
